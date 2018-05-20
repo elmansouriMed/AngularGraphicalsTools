@@ -1,0 +1,35 @@
+<form>
+    <div *ngFor="let formElement of formconfig.contents" class="form-group">
+      <div *ngIf="formElement.elementName == 'Input'" class="form-group" >
+        <label [for]="formElement.forValue">{{formElement.label}}</label>
+        <input [type]="formElement.type" class="form-control" [id]="formElement.id" [placeholder]="formElement.placeholder">
+      </div>
+      <div *ngIf="formElement.elementName == 'Checkbox'" class="form-check-inline">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input {{formElement.classe}}" [value]="formElement.value">{{formElement.label}}
+        </label>
+      </div>
+      <div *ngIf="formElement.elementName == 'Radio'" class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" [name]="formElement.name" [value]="formElement.label">{{formElement.label}}
+        </label>
+      </div>
+      <div *ngIf="formElement.elementName == 'Select'" class="form-group">
+        <label [for]="formElement.forValue">{{formElement.label}}</label>
+        <select class="form-control" [multiple]="formElement.isOneSelectOrMultiple" [id]="formElement.id">
+          <option *ngFor="let elementSelect of formElement.values" >{{elementSelect}}</option>
+        </select>
+      </div>
+      <div *ngIf="formElement.elementName == 'Textarea'"  class="form-group">
+        <label [for]="formElement.forValue">{{formElement.label}}</label>
+        <textarea class="form-control" [rows]="formElement.rows" [id]="formElement.id"></textarea>
+      </div>
+      
+      
+    </div>
+    
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<!--[class]="formElement.isInline ? 'form-check-inline' :   'form-check-label'"-->
